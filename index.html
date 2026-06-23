@@ -54,20 +54,22 @@ body {
   pointer-events: none;
   overflow: hidden;
 }
-.field-bg svg {
+.field-bg img {
   position: absolute;
   width: 100%;
   height: 100%;
-  opacity: 0.06;
+  object-fit: cover;
+  object-position: center bottom;
+  opacity: 0.18;
+  filter: saturate(0.6) brightness(0.5);
 }
 .field-bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(30,45,74,0.75) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 50% at 80% 80%, rgba(201,162,39,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(12,16,32,0.5) 0%, transparent 100%);
+    linear-gradient(180deg, rgba(12,16,32,0.82) 0%, rgba(12,16,32,0.65) 40%, rgba(12,16,32,0.88) 100%),
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30,45,74,0.5) 0%, transparent 70%);
 }
 
 /* ============================================================
@@ -306,13 +308,14 @@ header {
   white-space: nowrap;
 }
 
-/* Hero visual — before/after */
+/* Hero visual — before/after duplo */
 .hero-visual {
   flex-shrink: 0;
   display: flex;
-  gap: 16px;
+  gap: 10px;
   align-items: flex-end;
   animation: fadeUp 0.6s ease 0.3s both;
+  flex-wrap: nowrap;
 }
 .ba-pair {
   display: flex;
@@ -1028,10 +1031,14 @@ footer {
 @media (max-width: 640px) {
   header { padding: 14px 20px; top: 44px; }
   .hero { padding: 148px 20px 56px; gap: 36px; }
-  .hero-visual { gap: 10px; }
-  .ba-img.is-after { width: 140px !important; height: 180px !important; }
-  .ba-img:not(.is-after) { width: 110px !important; height: 145px !important; }
-  .ba-arrow { font-size: 1.3rem; }
+  .hero-visual { gap: 6px; }
+  .ba-img.is-after { width: 120px !important; height: 158px !important; }
+  .ba-img:not(.is-after) { width: 95px !important; height: 120px !important; }
+  .ba-arrow { font-size: 1.1rem; padding-bottom: 16px; }
+  .hero-visual > div:nth-child(4),
+  .hero-visual > div:nth-child(5),
+  .hero-visual > div:nth-child(6),
+  .hero-visual > div:nth-child(7) { display: none; }
   .form-body { padding: 22px 18px; }
   #payment-panel { padding: 18px; }
   .poses-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1052,32 +1059,7 @@ footer {
 
 <!-- FUNDO -->
 <div class="field-bg">
-  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1440" height="900" fill="#0a2a12"/>
-    <g fill="none" stroke="#0d3318" stroke-width="60">
-      <rect x="60"  y="0" width="60" height="900"/>
-      <rect x="180" y="0" width="60" height="900"/>
-      <rect x="300" y="0" width="60" height="900"/>
-      <rect x="420" y="0" width="60" height="900"/>
-      <rect x="540" y="0" width="60" height="900"/>
-      <rect x="660" y="0" width="60" height="900"/>
-      <rect x="780" y="0" width="60" height="900"/>
-      <rect x="900" y="0" width="60" height="900"/>
-      <rect x="1020" y="0" width="60" height="900"/>
-      <rect x="1140" y="0" width="60" height="900"/>
-      <rect x="1260" y="0" width="60" height="900"/>
-      <rect x="1380" y="0" width="60" height="900"/>
-    </g>
-    <line x1="720" y1="0" x2="720" y2="900" stroke="#14401e" stroke-width="3"/>
-    <circle cx="720" cy="450" r="120" fill="none" stroke="#14401e" stroke-width="3"/>
-    <circle cx="720" cy="450" r="5" fill="#14401e"/>
-    <rect x="520" y="320" width="400" height="260" fill="none" stroke="#14401e" stroke-width="2" rx="4"/>
-    <rect x="620" y="380" width="200" height="140" fill="none" stroke="#14401e" stroke-width="2" rx="2"/>
-    <path d="M0,0 Q20,0 20,20" fill="none" stroke="#14401e" stroke-width="2"/>
-    <path d="M1440,0 Q1420,0 1420,20" fill="none" stroke="#14401e" stroke-width="2"/>
-    <path d="M0,900 Q20,900 20,880" fill="none" stroke="#14401e" stroke-width="2"/>
-    <path d="M1440,900 Q1420,900 1420,880" fill="none" stroke="#14401e" stroke-width="2"/>
-  </svg>
+  <img src="estadio-bg.png" alt="">
 </div>
 
 <!-- TOPBAR -->
@@ -1125,12 +1107,12 @@ footer {
     </div>
   </div>
 
-  <!-- Before / After -->
+  <!-- Before / After duplo -->
   <div class="hero-visual">
 
     <div class="ba-pair">
       <div class="ba-label before">Selfie</div>
-      <div class="ba-img" style="width:150px; height:190px;">
+      <div class="ba-img" style="width:130px; height:165px;">
         <img src="selfie1.png" alt="Foto original">
       </div>
     </div>
@@ -1139,8 +1121,26 @@ footer {
 
     <div class="ba-pair">
       <div class="ba-label after">Mini Craque</div>
-      <div class="ba-img is-after" style="width:180px; height:230px;">
+      <div class="ba-img is-after" style="width:158px; height:210px;">
         <img src="boneco1_branco.png" alt="Boneco personalizado">
+      </div>
+    </div>
+
+    <div style="width:1px; background: rgba(255,255,255,0.08); align-self:stretch; margin: 0 8px; flex-shrink:0;"></div>
+
+    <div class="ba-pair">
+      <div class="ba-label before">Selfie</div>
+      <div class="ba-img" style="width:130px; height:165px;">
+        <img src="selfie2.png" alt="Foto original">
+      </div>
+    </div>
+
+    <div class="ba-arrow">→</div>
+
+    <div class="ba-pair">
+      <div class="ba-label after">Mini Craque</div>
+      <div class="ba-img is-after" style="width:158px; height:210px;">
+        <img src="boneco2_taca.png" alt="Boneco personalizado">
       </div>
     </div>
 
@@ -1506,11 +1506,11 @@ footer {
 
         <div class="price-table" style="margin-top: 18px;">
           <div class="price-table-title">Tabela de preços</div>
-          <div class="pt-row" data-qty="1"><span class="pt-qty">1 imagem</span><span class="pt-price">R$ 12,90</span></div>
-          <div class="pt-row" data-qty="2"><span class="pt-qty">2 imagens</span><span class="pt-price">R$ 18,90</span></div>
-          <div class="pt-row highlight-row" data-qty="3"><span class="pt-qty">3 imagens</span><span class="pt-price">R$ 24,90</span><span class="pt-badge">+ pedido</span></div>
-          <div class="pt-row" data-qty="4"><span class="pt-qty">4 imagens</span><span class="pt-price">R$ 29,90</span></div>
-          <div class="pt-row" data-qty="5"><span class="pt-qty">5 imagens</span><span class="pt-price">R$ 34,90</span><span class="pt-badge">melhor valor</span></div>
+          <div class="pt-row" data-qty="1"><span class="pt-qty">1 imagem</span><span class="pt-price">R$ 14,90</span></div>
+          <div class="pt-row" data-qty="2"><span class="pt-qty">2 imagens</span><span class="pt-price">R$ 22,90</span></div>
+          <div class="pt-row highlight-row" data-qty="3"><span class="pt-qty">3 imagens</span><span class="pt-price">R$ 29,90</span><span class="pt-badge">+ pedido</span></div>
+          <div class="pt-row" data-qty="4"><span class="pt-qty">4 imagens</span><span class="pt-price">R$ 39,90</span></div>
+          <div class="pt-row" data-qty="5"><span class="pt-qty">5 imagens</span><span class="pt-price">R$ 44,90</span><span class="pt-badge">melhor valor</span></div>
         </div>
 
       </div>
@@ -1698,8 +1698,8 @@ const CFG = {
   testMode: false,
 };
 
-const PRECOS = { 1: 12.90, 2: 18.90, 3: 24.90, 4: 29.90, 5: 34.90 };
-const PRECOS_BUMP = { 1: 8.90, 2: 12.90, 3: 17.90, 4: 20.90, 5: 24.90 };
+const PRECOS = { 1: 14.90, 2: 22.90, 3: 29.90, 4: 39.90, 5: 44.90 };
+const PRECOS_BUMP = { 1: 10.90, 2: 15.90, 3: 20.90, 4: 27.90, 5: 31.90 };
 
 const state = {
   selecao: '', selecaoOutro: '',
@@ -2019,7 +2019,7 @@ async function initBrick(pid) {
       onReady: () => {},
       onSubmit: async ({ selectedPaymentMethod, formData: bData }) => {
         try {
-          const res = await fetch(`${CFG.sbUrl}/functions/v1/criar-pagamento`, {
+          const res = await fetch(`${CFG.sbUrl}/functions/v1/criar-pagamento-minicraque`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -2074,7 +2074,7 @@ function showPending() {
 function startPolling(pid) {
   const iv = setInterval(async () => {
     try {
-      const res = await fetch(`${CFG.sbUrl}/functions/v1/verificar-pagamento`, {
+      const res = await fetch(`${CFG.sbUrl}/functions/v1/verificar-pagamento-minicraque`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'apikey': CFG.sbKey, 'Authorization': `Bearer ${CFG.sbKey}` },
         body: JSON.stringify({ pedidoId: pid }),
